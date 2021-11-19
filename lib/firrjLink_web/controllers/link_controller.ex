@@ -9,6 +9,16 @@ defmodule FirrjLinkWeb.LinkController do
     render(conn, "index.html", links: links)
   end
 
+  def go(conn, %{"slug" => slug}) do
+    link = Links.get_link_by_slug(slug)
+
+    if is_nil(link) do
+      redirect(conn, to: "/links")
+    else
+      redirect(conn, external: link)
+    end
+  end
+
   def new(conn, _params) do
     changeset = Links.change_link(%Link{})
     render(conn, "new.html", changeset: changeset)

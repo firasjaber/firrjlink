@@ -21,6 +21,11 @@ defmodule FirrjLink.Links do
     Repo.all(Link)
   end
 
+  def get_link_by_slug(slug) do
+    query = from l in Link, where: l.slug == ^slug, select: l.link
+    Repo.one(query)
+  end
+
   @doc """
   Gets a single link.
 
