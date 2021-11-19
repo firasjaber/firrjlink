@@ -18,6 +18,7 @@ defmodule FirrjLinkWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/links", LinkController
   end
 
   # Other scopes may use custom stacks.
