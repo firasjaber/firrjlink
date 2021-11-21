@@ -26,6 +26,11 @@ defmodule FirrjLink.Links do
     Repo.one(query)
   end
 
+  def inc_link_views(slug) do
+    from(l in Link, where: l.slug == ^slug, select: [:views])
+    |> Repo.update_all(inc: [views: 1])
+  end
+
   @doc """
   Gets a single link.
 

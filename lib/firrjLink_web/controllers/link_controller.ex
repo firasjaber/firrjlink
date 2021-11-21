@@ -11,6 +11,7 @@ defmodule FirrjLinkWeb.LinkController do
 
   def go(conn, %{"slug" => slug}) do
     link = Links.get_link_by_slug(slug)
+    Links.inc_link_views(slug)
 
     if is_nil(link) do
       redirect(conn, to: "/links")
